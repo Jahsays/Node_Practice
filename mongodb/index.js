@@ -1,9 +1,15 @@
+require('./models/db');
+
 const express = require('express');
 const path = require('path');
 const handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+const {
+    allowInsecurePrototypeAccess,
+} = require('@handlebars/allow-prototype-access');
 const bodyparser = require('body-parser');
+
+const studentController = require('./controllers/studentController')
 
 var app = express();
 
@@ -24,7 +30,7 @@ app.engine(
     exphbs({
         handlebars: allowInsecurePrototypeAccess(handlebars),
         extname: 'hbs',
-        defaultLayout: 'MainLayout',
+        defaultLayout: 'mainLayout',
         layoutsDir: __dirname + '/views/layouts/',
     })
 );
@@ -34,3 +40,5 @@ app.set('view engine', 'hbs');
 app.listen(3000, () => {
     console.log('server started at port 3000')
 });
+
+app.use("/student", studentController);
