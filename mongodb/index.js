@@ -30,7 +30,7 @@ app.engine(
     exphbs({
         handlebars: allowInsecurePrototypeAccess(handlebars),
         extname: 'hbs',
-        defaultLayout: 'mainLayout',
+        defaultLayout: 'MainLayout',
         layoutsDir: __dirname + '/views/layouts/',
     })
 );
